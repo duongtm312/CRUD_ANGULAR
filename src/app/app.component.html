@@ -1,0 +1,113 @@
+<div class="container">
+  <h2>Product</h2>
+  <p>The .table-striped class adds zebra-stripes to a table:</p>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Create
+  </button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>price</th>
+      <th>img</th>
+      <th>edit</th>
+      <th>delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of products; let i = index">
+      <td >{{p.id}}</td>
+      <td>{{p.name}}</td>
+      <td>{{p.price}}</td>
+      <td><img src="{{p.img}}" width="250" height="200"></td>
+      <td>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModalEdit" (click)="showEdit(i)">Edit</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="delete(i)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Button to Open the Modal -->
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Create Product</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td><input placeholder="nhập id" [(ngModel)]="product.id"></td>
+          </tr>
+          <tr>
+            <td><input placeholder="nhập name" [(ngModel)]="product.name"></td>
+          </tr>
+          <tr>
+            <td><input placeholder="nhập price" [(ngModel)]="product.price"></td>
+          </tr>
+          <tr>
+            <td><input placeholder="nhập image" [(ngModel)]="product.img"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="create()">Create</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="myModalEdit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Create Product</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td><input #id placeholder="nhập id" [value]="productEdit.id"></td>
+          </tr>
+          <tr>
+            <td><input #name placeholder="nhập name" [value]="productEdit.name"></td>
+          </tr>
+          <tr>
+            <td><input #price placeholder="nhập price" [value]="productEdit.price"></td>
+          </tr>
+          <tr>
+            <td><input #img placeholder="nhập image" [value]="productEdit.img"></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="edit((id.value),name.value,price.value,img.value)">Edit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
